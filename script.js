@@ -1,5 +1,5 @@
 const API_KEY = 'BiYWndKGr5/B/+CC68DhyQ==GrHaqaADUnuXpGPx';  // Replace with your actual API key
-const RANDOM_QUOTE_API_URL = 'https://api.api-ninjas.com/v1/quotes?category=inspirational';
+const RANDOM_QUOTE_API_URL = 'https://api.api-ninjas.com/v1/quotes';
 const quoteDisplayElement = document.getElementById('quoteDisplay');
 const quoteInputElement = document.getElementById('quoteInput');
 const timerElement = document.getElementById('timer');
@@ -105,11 +105,12 @@ function showPlayAgainMessage(wpm) {
 // Function to fetch a random quote from API Ninjas
 function getRandomQuote() {
   return fetch(RANDOM_QUOTE_API_URL, {
+    method: 'GET',
     headers: {
-      'X-Api-Key': API_KEY,
+      'X-Api-Key': API_KEY.trim(), // Trim to remove any accidental spaces
       'Content-Type': 'application/json'
     }
-  })
+  })  
   .then(response => {
     if (!response.ok) {
       throw new Error('Network response was not ok');
